@@ -2086,7 +2086,7 @@ define(function(require) {
 					id = input.attr('id'),
 					input_fields = $('input[name="' + name + '"]', html);
 
-				if (input_fields.size() > 1) {
+				if (input_fields.length > 1) {
 					if (type === 'checkbox') {
 						input_fields = input_fields.filter('[value=' + value + ']');
 						(input.attr('checked')) ? input_fields.attr('checked', 'checked') : input_fields.removeAttr('checked');
