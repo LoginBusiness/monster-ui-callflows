@@ -120,7 +120,7 @@ define(function(require) {
 				}
 			});
 
-			$(directory_html).delegate('.action_user.delete', 'click', function() {
+			$(directory_html).on('click', '.action_user.delete', function() {
 				var user_id = $(this).data('id');
 				//removes it from the grid
 				$('#row_user_' + user_id, directory_html).remove();

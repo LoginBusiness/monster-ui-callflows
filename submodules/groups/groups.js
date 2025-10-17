@@ -859,11 +859,11 @@ define(function(require) {
 										submodule: 'groups'
 									})));
 							}
-						});
+					});
 
-						$('#name', popup_html).bind('keyup blur change', function() {
-							$('.column.right .title', popup_html).html('Page Group - ' + $(this).val());
-						});
+					$('#name', popup_html).on('keyup blur change', function() {
+						$('.column.right .title', popup_html).html('Page Group - ' + $(this).val());
+					});
 
 						$('ul.settings1 > li > a', popup_html).on('click', function(item) {
 							$('.pane_content', popup_html).hide();
@@ -929,17 +929,17 @@ define(function(require) {
 						}
 
 						$('.column.left .options', popup_html).hide();
-						$('.column.left .actions', popup_html).hide();
+					$('.column.left .actions', popup_html).hide();
 
-						$('.options .option.delay', popup_html).bind('keyup', function() {
-							$(this).parents('li').data('delay', $(this).val());
-						});
+					$('.options .option.delay', popup_html).on('keyup', function() {
+						$(this).parents('li').data('delay', $(this).val());
+					});
 
-						$('.options .option.timeout', popup_html).bind('keyup', function() {
-							$(this).parents('li').data('timeout', $(this).val());
-						});
+					$('.options .option.timeout', popup_html).on('keyup', function() {
+						$(this).parents('li').data('timeout', $(this).val());
+					});
 
-						$('#save_ring_group', popup_html).on('click', function() {
+					$('#save_ring_group', popup_html).on('click', function() {
 							var name = $('#name', popup_html).val();
 							var audio = $('#audio', popup_html).val();
 
@@ -1023,10 +1023,10 @@ define(function(require) {
 							}
 						});
 
-						$(popup_html).delegate('.trash', 'click', function() {
-							var $parent_li = $(this).parents('li').first();
-							remove_element($parent_li);
-						});
+					$(popup_html).on('click', '.trash', function() {
+						var $parent_li = $(this).parents('li').first();
+						remove_element($parent_li);
+					});
 
 						$('.pane_content', popup_html).hide();
 						$('#users_pane', popup_html).show();
@@ -1237,14 +1237,14 @@ define(function(require) {
 
 							//Hide delay column if ring strategy is set to 'In order'
 							if (strategy === 'single') {
-								$('.options .option.delay', popup_html).hide();
-							}
+							$('.options .option.delay', popup_html).hide();
+						}
 
-							$('#name', popup_html).bind('keyup blur change', function() {
-								$('.column.right .title', popup_html).html(self.i18n.active().oldCallflows.ring_group_val + $(this).val());
-							});
+						$('#name', popup_html).on('keyup blur change', function() {
+							$('.column.right .title', popup_html).html(self.i18n.active().oldCallflows.ring_group_val + $(this).val());
+						});
 
-							$('#ringback', popup_html).on('change', function(e) {
+						$('#ringback', popup_html).on('change', function(e) {
 								var val = $(this).val(),
 									isShoutcast = val === 'shoutcast_url';
 
@@ -1340,20 +1340,20 @@ define(function(require) {
 							}
 
 							$('.column.left .options', popup_html).hide();
-							$('.column.left .actions', popup_html).hide();
+						$('.column.left .actions', popup_html).hide();
 
-							$('.options .option.delay', popup_html).bind('keyup', function() {
-								$(this).parents('li').data('delay', $(this).val());
-							});
+						$('.options .option.delay', popup_html).on('keyup', function() {
+							$(this).parents('li').data('delay', $(this).val());
+						});
 
-							$('.options .option.timeout', popup_html).bind('keyup', function() {
-								$(this).parents('li').data('timeout', $(this).val());
-							});
+						$('.options .option.timeout', popup_html).on('keyup', function() {
+							$(this).parents('li').data('timeout', $(this).val());
+						});
 
-							$('#strategy', popup_html).bind('change', function() {
-								var strategy = $(this).val(),
-									$delay = $('.options .option.delay', popup_html);
-									$delayTitle = $('.options .delay_title', popup_html);
+						$('#strategy', popup_html).on('change', function() {
+							var strategy = $(this).val(),
+								$delay = $('.options .option.delay', popup_html);
+								$delayTitle = $('.options .delay_title', popup_html);
 
 								if (strategy === 'single') {
 									$delay.hide();
@@ -1493,10 +1493,10 @@ define(function(require) {
 								}
 							});
 
-							$(popup_html).delegate('.trash', 'click', function() {
-								var $parent_li = $(this).parents('li').first();
-								remove_element($parent_li);
-							});
+					$(popup_html).on('click', '.trash', function() {
+						var $parent_li = $(this).parents('li').first();
+						remove_element($parent_li);
+					});
 
 							$('.pane_content', popup_html).hide();
 							$('#users_pane', popup_html).show();

@@ -759,11 +759,11 @@ define(function(require) {
 				user_html.find('#pwd_mngt_pwd2').val('');
 			});
 
-			$(user_html).delegate('.enabled_checkbox', 'click', function() {
+			$(user_html).on('click', '.enabled_checkbox', function() {
 				self.userUpdateSingleDevice($(this), user_html);
 			});
 
-			$(user_html).delegate('.action_device.edit', 'click', function() {
+			$(user_html).on('click', '.action_device.edit', function() {
 				var data_device = {
 					id: $(this).data('id'),
 					hide_owner: !data.data.id ? true : false
@@ -794,7 +794,7 @@ define(function(require) {
 				});
 			});
 
-			$(user_html).delegate('.action_device.delete', 'click', function() {
+			$(user_html).on('click', '.action_device.delete', function() {
 				var device_id = $(this).data('id');
 				monster.ui.confirm(self.i18n.active().callflows.user.do_you_really_want_to_delete, function() {
 					self.userDeleteDevice(device_id, function() {

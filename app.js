@@ -2074,13 +2074,13 @@ define(function(require) {
 			});
 		},
 
-		winkstartLinkForm: function(html) {
-			$('input', html).bind('change.link keyup.link focus.link', function() {
-				var input = $(this),
-					name = input.attr('name'),
-					type = input.attr('type'),
-					value = input.val(),
-					id = input.attr('id'),
+	winkstartLinkForm: function(html) {
+		$('input', html).on('change.link keyup.link focus.link', function() {
+			var input = $(this),
+				name = input.attr('name'),
+				type = input.attr('type'),
+				value = input.val(),
+				id = input.attr('id'),
 					input_fields = $('input[name="' + name + '"]', html);
 
 				if (input_fields.length > 1) {

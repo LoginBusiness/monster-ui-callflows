@@ -116,7 +116,7 @@ define(function(require) {
 				addNumber(e);
 			});
 
-			$('.add-number', template).bind('keypress', function(e) {
+			$('.add-number', template).on('keypress', function(e) {
 				var code = e.keyCode || e.which;
 
 				if (code === 13) {
@@ -124,7 +124,7 @@ define(function(require) {
 				}
 			});
 
-			$(template).delegate('.delete-number', 'click', function(e) {
+			$(template).on('click', '.delete-number', function(e) {
 				$(this).parents('.number-wrapper').remove();
 			});
 
@@ -193,7 +193,7 @@ define(function(require) {
 				addNumber();
 			});
 
-			$('.add-number', template).bind('keypress', function(e) {
+			$('.add-number', template).on('keypress', function(e) {
 				var code = e.keyCode || e.which;
 
 				if (code === 13) {
@@ -201,7 +201,7 @@ define(function(require) {
 				}
 			});
 
-			$(template).delegate('.delete-number', 'click', function(e) {
+			$(template).on('click', '.delete-number', function(e) {
 				$(this).parents('.number-wrapper').remove();
 			});
 

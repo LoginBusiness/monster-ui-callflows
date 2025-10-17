@@ -59,7 +59,7 @@ define(function(require) {
 										+ '/raw?auth_token=' + self.getAuthToken();
 			});
 
-			$('#file', media_html).bind('change', function(evt) {
+			$('#file', media_html).on('change', function(evt) {
 				var files = evt.target.files;
 
 				if (files.length > 0) {
