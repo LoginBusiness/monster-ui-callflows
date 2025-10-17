@@ -258,7 +258,7 @@ define(function(require) {
 				}
 			}
 
-			$('.fake_checkbox', timeofday_html).click(function() {
+			$('.fake_checkbox', timeofday_html).on('click', function() {
 				var $this = $(this),
 					toCheck = !$this.hasClass('checked');
 
@@ -271,7 +271,7 @@ define(function(require) {
 				}
 			});
 
-			$('#ordinal', timeofday_html).change(function() {
+			$('#ordinal', timeofday_html).on('change', function() {
 				if ($(this).val() === 'every') {
 					$('#weekdays', timeofday_html).hide();
 					$('#specific_day', timeofday_html).show();
@@ -281,7 +281,7 @@ define(function(require) {
 				}
 			});
 
-			$('#cycle', timeofday_html).change(function() {
+			$('#cycle', timeofday_html).on('change', function() {
 				var $this = $(this);
 
 				$('#yearly_every', timeofday_html).hide();
@@ -318,7 +318,7 @@ define(function(require) {
 				}
 			});
 
-			$('.timeofday-save', timeofday_html).click(function(ev) {
+			$('.timeofday-save', timeofday_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				var $this = $(this);
@@ -353,7 +353,7 @@ define(function(require) {
 				}
 			});
 
-			$('.timeofday-delete', timeofday_html).click(function(ev) {
+			$('.timeofday-delete', timeofday_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				monster.ui.confirm(self.i18n.active().callflows.timeofday.are_you_sure_you_want_to_delete, function() {
@@ -548,7 +548,7 @@ define(function(require) {
 								submodule: 'timeofday'
 							}));
 
-							$('.inline_action', popup_html).click(function(ev) {
+							$('.inline_action', popup_html).on('click', function(ev) {
 								var _data = ($(this).data('action') === 'edit') ? { id: $('#timeofday_selector', popup_html).val() } : {},
 									isRule = $('#timeofday_selector option:selected').parents('optgroup').data('type') === 'rules',
 									methodToCall = $(this).data('action') === 'edit' ? (isRule ? 'timeofdayPopupEdit' : 'temporalsetPopupEdit') : 'timeofdayPopupEdit';
@@ -571,11 +571,11 @@ define(function(require) {
 								$('#edit_link', popup_html).hide();
 							}
 
-							$('#timeofday_selector', popup_html).change(function() {
+							$('#timeofday_selector', popup_html).on('change', function() {
 								$('#timeofday_selector option:selected', popup_html).val() === '_' ? $('#edit_link', popup_html).hide() : $('#edit_link', popup_html).show();
 							});
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								child_node.key = $('#timeofday_selector', popup_html).val();
 
 								child_node.key_caption = $('#timeofday_selector option:selected', popup_html).text();
@@ -610,7 +610,7 @@ define(function(require) {
 
 						timezone.populateDropdown($('#timezone_selector', popup_html), node.getMetadata('timezone') || 'inherit', {inherit: self.i18n.active().defaultTimezone});
 
-						$('#add', popup_html).click(function() {
+						$('#add', popup_html).on('click', function() {
 							var timezone = $('#timezone_selector', popup_html).val();
 							if (timezone && timezone !== 'inherit') {
 								node.setMetadata('timezone', timezone);
@@ -692,7 +692,7 @@ define(function(require) {
 								submodule: 'timeofday'
 							}));
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								var _rules = [];
 
 								$('.right .connect li', popup_html).each(function() {
@@ -789,7 +789,7 @@ define(function(require) {
 								submodule: 'timeofday'
 							}));
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								var _rules = [];
 
 								$('.right .connect li', popup_html).each(function() {
@@ -886,7 +886,7 @@ define(function(require) {
 								submodule: 'timeofday'
 							}));
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								var _rules = [];
 
 								$('.right .connect li', popup_html).each(function() {

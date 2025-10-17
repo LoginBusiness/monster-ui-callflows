@@ -46,13 +46,13 @@ define(function(require) {
 				$('#upload_div', media_html).hide();
 			}
 
-			$('#change_link', media_html).click(function(ev) {
+			$('#change_link', media_html).on('click', function(ev) {
 				ev.preventDefault();
 				$('#upload_div', media_html).show();
 				$('.player_file', media_html).hide();
 			});
 
-			$('#download_link', media_html).click(function(ev) {
+			$('#download_link', media_html).on('click', function(ev) {
 				ev.preventDefault();
 				window.location.href = self.apiUrl + (self.apiUrl.substring(self.apiUrl.length - 1) !== '/' ? '/' : '')
 										+ 'accounts/' + self.accountId + '/media/' + data.data.id
@@ -90,11 +90,11 @@ define(function(require) {
 
 			changeType($('#media_type', media_html));
 
-			$('#media_type', media_html).change(function() {
+			$('#media_type', media_html).on('change', function() {
 				changeType($(this));
 			});
 
-			$('.media-save', media_html).click(function(ev) {
+			$('.media-save', media_html).on('click', function(ev) {
 				ev.preventDefault();
 				var $this = $(this);
 
@@ -154,7 +154,7 @@ define(function(require) {
 				}
 			});
 
-			$('.media-delete', media_html).click(function(ev) {
+			$('.media-delete', media_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				monster.ui.confirm(self.i18n.active().callflows.media.are_you_sure_you_want_to_delete, function() {
@@ -373,7 +373,7 @@ define(function(require) {
 								$('#edit_link', popup_html).hide();
 							}
 
-							$('.inline_action', popup_html).click(function(ev) {
+							$('.inline_action', popup_html).on('click', function(ev) {
 								var _data = ($(this).data('action') === 'edit') ? { id: $('#media_selector', popup_html).val() } : {};
 
 								ev.preventDefault();
@@ -399,7 +399,7 @@ define(function(require) {
 								popup_html.find('.shoutcast-div').toggleClass('active', isShoutcast).find('input').val('');
 							});
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								var mediaValue = $('#media_selector', popup_html).val(),
 									shoutcastValue = $('.shoutcast-url-input', popup_html).val();
 

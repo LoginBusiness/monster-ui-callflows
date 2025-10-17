@@ -75,7 +75,7 @@ define(function(require) {
 								$('#edit_link', popup_html).hide();
 							}
 
-							$('.inline_action', popup_html).click(function(ev) {
+							$('.inline_action', popup_html).on('click', function(ev) {
 								var _data = ($(this).data('action') === 'edit') ? { id: $('#user_selector', popup_html).val() } : {};
 
 								ev.preventDefault();
@@ -94,7 +94,7 @@ define(function(require) {
 								});
 							});
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								node.setMetadata('id', $('#user_selector', popup_html).val());
 								node.setMetadata('timeout', $('#parameter_input', popup_html).val());
 								node.setMetadata('can_call_self', $('#user_can_call_self', popup_html).is(':checked'));
@@ -619,18 +619,18 @@ define(function(require) {
 				callbacks = args.callbacks,
 				data_devices;
 
-			hotdesk_pin_require.change(function() {
+			hotdesk_pin_require.on('change', function() {
 				$(this).is(':checked') ? hotdesk_pin.show('blind') : hotdesk_pin.hide('blind');
 			});
 
-			$('.user-impersonate', user_html).click(function(ev) {
+			$('.user-impersonate', user_html).on('click', function(ev) {
 				monster.pub('auth.triggerImpersonateUser', {
 					userId: data.data.id,
 					userName: data.data.first_name + ' ' + data.data.last_name
 				});
 			});
 
-			$('.user-save', user_html).click(function(ev) {
+			$('.user-save', user_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				var $this = $(this);
@@ -710,7 +710,7 @@ define(function(require) {
 				}
 			});
 
-			$('.user-delete', user_html).click(function(ev) {
+			$('.user-delete', user_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				monster.ui.confirm(self.i18n.active().callflows.user.are_you_sure_you_want_to_delete, function() {
@@ -718,13 +718,13 @@ define(function(require) {
 				});
 			});
 
-			$('#music_on_hold_media_id', user_html).change(function() {
+			$('#music_on_hold_media_id', user_html).on('change', function() {
 				!$('#music_on_hold_media_id option:selected', user_html).val() ? $('#edit_link_media', user_html).hide() : $('#edit_link_media', user_html).show();
 
 				user_html.find('.shoutcast-div').toggleClass('active', $(this).val() === 'shoutcast');
 			});
 
-			$('.inline_action_media', user_html).click(function(ev) {
+			$('.inline_action_media', user_html).on('click', function(ev) {
 				var _data = ($(this).data('action') === 'edit') ? { id: $('#music_on_hold_media_id', user_html).val() } : {},
 					_id = _data.id;
 
@@ -811,7 +811,7 @@ define(function(require) {
 				});
 			});
 
-			$('.add_device', user_html).click(function(ev) {
+			$('.add_device', user_html).on('click', function(ev) {
 				var data_device = {
 						hide_owner: true
 					},

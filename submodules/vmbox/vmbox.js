@@ -183,7 +183,7 @@ define(function(require) {
 
 			self.winkstartTabs(vmbox_html);
 
-			$('#owner_id', vmbox_html).change(function() {
+			$('#owner_id', vmbox_html).on('change', function() {
 				if ($(this).val()) {
 					self.callApi({
 						resource: 'user.get',
@@ -204,7 +204,7 @@ define(function(require) {
 				$('#edit_link', vmbox_html).hide();
 			}
 
-			$('#owner_id', vmbox_html).change(function() {
+			$('#owner_id', vmbox_html).on('change', function() {
 				if (!$('#owner_id option:selected', vmbox_html).val()) {
 					$('#edit_link', vmbox_html).hide();
 					$('#timezone', vmbox_html).val(timezone.getLocaleTimezone());
@@ -213,7 +213,7 @@ define(function(require) {
 				}
 			});
 
-			$('.inline_action', vmbox_html).click(function(ev) {
+			$('.inline_action', vmbox_html).on('click', function(ev) {
 				var _data = ($(this).data('action') === 'edit') ? { id: $('#owner_id', vmbox_html).val() } : {},
 					_id = _data.id;
 
@@ -249,11 +249,11 @@ define(function(require) {
 				$('#edit_link_media', vmbox_html).hide();
 			}
 
-			$('#media_unavailable', vmbox_html).change(function() {
+			$('#media_unavailable', vmbox_html).on('change', function() {
 				!$('#media_unavailable option:selected', vmbox_html).val() ? $('#edit_link_media', vmbox_html).hide() : $('#edit_link_media', vmbox_html).show();
 			});
 
-			$('.inline_action_media', vmbox_html).click(function(ev) {
+			$('.inline_action_media', vmbox_html).on('click', function(ev) {
 				var _data = ($(this).data('action') === 'edit') ? { id: $('#media_unavailable', vmbox_html).val() } : {},
 					_id = _data.id;
 
@@ -286,11 +286,11 @@ define(function(require) {
 				$('#edit_link_temporary_media', vmbox_html).hide();
 			}
 
-			$('#media_temporary_unavailable', vmbox_html).change(function() {
+			$('#media_temporary_unavailable', vmbox_html).on('change', function() {
 				!$('#media_temporary_unavailable option:selected', vmbox_html).val() ? $('#edit_link_temporary_media', vmbox_html).hide() : $('#edit_link_temporary_media', vmbox_html).show();
 			});
 
-			$('.inline_action_temporary_media', vmbox_html).click(function(ev) {
+			$('.inline_action_temporary_media', vmbox_html).on('click', function(ev) {
 				var _data = ($(this).data('action') === 'edit') ? { id: $('#media_temporary_unavailable', vmbox_html).val() } : {},
 					_id = _data.id;
 
@@ -319,7 +319,7 @@ define(function(require) {
 				});
 			});
 
-			$('#announcement_only', vmbox_html).click(function(ev) {
+			$('#announcement_only', vmbox_html).on('click', function(ev) {
 				var $this = $(this),
 					isChecked = $this.prop('checked'),
 					$skipInstructions = vmbox_html.find('#skip_instructions'),
@@ -357,7 +357,7 @@ define(function(require) {
 					return list.filter(function(email) { return validateEmail(email); });
 				};
 
-			$('.vmbox-save', vmbox_html).click(function(ev) {
+			$('.vmbox-save', vmbox_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				var $this = $(this);
@@ -389,7 +389,7 @@ define(function(require) {
 				}
 			});
 
-			$('.vmbox-delete', vmbox_html).click(function(ev) {
+			$('.vmbox-delete', vmbox_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				monster.ui.confirm(self.i18n.active().callflows.vmbox.are_you_sure_you_want_to_delete, function() {
@@ -509,7 +509,7 @@ define(function(require) {
 									$('#edit_link', popup_html).hide();
 								}
 
-								$('.inline_action', popup_html).click(function(ev) {
+								$('.inline_action', popup_html).on('click', function(ev) {
 									var _data = ($(this).data('action') === 'edit') ? { id: $('#vmbox_selector', popup_html).val() } : {};
 
 									ev.preventDefault();
@@ -526,7 +526,7 @@ define(function(require) {
 									});
 								});
 
-								$('#add', popup_html).click(function() {
+								$('#add', popup_html).on('click', function() {
 									node.setMetadata('id', $('#vmbox_selector', popup_html).val());
 
 									node.caption = $('#vmbox_selector option:selected', popup_html).text();

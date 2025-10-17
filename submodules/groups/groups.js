@@ -36,7 +36,7 @@ define(function(require) {
 
 			self.groupsRenderEndpointList(data, groups_html);
 
-			$('.group-save', groups_html).click(function(ev) {
+			$('.group-save', groups_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				var $this = $(this);
@@ -68,7 +68,7 @@ define(function(require) {
 				}
 			});
 
-			$('.group-delete', groups_html).click(function(ev) {
+			$('.group-delete', groups_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				monster.ui.confirm(self.i18n.active().callflows.groups.are_you_sure_you_want_to_delete, function() {
@@ -130,10 +130,10 @@ define(function(require) {
 					}
 				};
 
-			$('#select_user_id', groups_html).change(function() {
+			$('#select_user_id', groups_html).on('change', function() {
 				add_user();
 			});
-			$('#select_device_id', groups_html).change(function() {
+			$('#select_device_id', groups_html).on('change', function() {
 				add_device();
 			});
 
@@ -419,7 +419,7 @@ define(function(require) {
 
 							monster.ui.tooltips(popup_html);
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								var setData = function(field, value) {
 									if (value === 'endpoint_empty') {
 										node.deleteMetadata('user_id');
@@ -492,7 +492,7 @@ define(function(require) {
 
 							monster.ui.tooltips(popup_html);
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								var setData = function(field, value) {
 									if (value === 'endpoint_empty') {
 										node.deleteMetadata('user_id');
@@ -591,7 +591,7 @@ define(function(require) {
 									submodule: 'groups'
 								}));
 
-								$('#add', popup_html).click(function() {
+								$('#add', popup_html).on('click', function() {
 									node.setMetadata('callflow_id', $('#object-selector', popup_html).val());
 
 									node.caption = $('#object-selector option:selected', popup_html).text();
@@ -674,7 +674,7 @@ define(function(require) {
 									submodule: 'groups'
 								}));
 
-								$('#add', popup_html).click(function() {
+								$('#add', popup_html).on('click', function() {
 									node.setMetadata('callflow_id', $('#object-selector', popup_html).val());
 
 									node.caption = $('#object-selector option:selected', popup_html).text();
@@ -865,7 +865,7 @@ define(function(require) {
 							$('.column.right .title', popup_html).html('Page Group - ' + $(this).val());
 						});
 
-						$('ul.settings1 > li > a', popup_html).click(function(item) {
+						$('ul.settings1 > li > a', popup_html).on('click', function(item) {
 							$('.pane_content', popup_html).hide();
 
 							//Reset Search field
@@ -887,12 +887,12 @@ define(function(require) {
 							$(this).parent().addClass('current');
 						});
 
-						$('.searchsubmit2', popup_html).click(function() {
+						$('.searchsubmit2', popup_html).on('click', function() {
 							$('.searchfield', popup_html).val('');
 							$('.column li', popup_html).show();
 						});
 
-						$('#devices_pane .searchfield', popup_html).keyup(function() {
+						$('#devices_pane .searchfield', popup_html).on('keyup', function() {
 							$('#devices_pane .column.left li').each(function() {
 								if ($('.item_name', $(this)).html().toLowerCase().indexOf($('#devices_pane .searchfield', popup_html).val().toLowerCase()) === -1) {
 									$(this).hide();
@@ -902,7 +902,7 @@ define(function(require) {
 							});
 						});
 
-						$('#users_pane .searchfield', popup_html).keyup(function() {
+						$('#users_pane .searchfield', popup_html).on('keyup', function() {
 							$('#users_pane .column.left li').each(function() {
 								if ($('.item_name', $(this)).html().toLowerCase().indexOf($('#users_pane .searchfield', popup_html).val().toLowerCase()) === -1) {
 									$(this).hide();
@@ -912,7 +912,7 @@ define(function(require) {
 							});
 						});
 
-						$('#groups_pane .searchfield', popup_html).keyup(function() {
+						$('#groups_pane .searchfield', popup_html).on('keyup', function() {
 							$('#groups_pane .column.left li').each(function() {
 								if ($('.item_name', $(this)).html().toLowerCase().indexOf($('#groups_pane .searchfield', popup_html).val().toLowerCase()) === -1) {
 									$(this).hide();
@@ -939,7 +939,7 @@ define(function(require) {
 							$(this).parents('li').data('timeout', $(this).val());
 						});
 
-						$('#save_ring_group', popup_html).click(function() {
+						$('#save_ring_group', popup_html).on('click', function() {
 							var name = $('#name', popup_html).val();
 							var audio = $('#audio', popup_html).val();
 
@@ -1244,7 +1244,7 @@ define(function(require) {
 								$('.column.right .title', popup_html).html(self.i18n.active().oldCallflows.ring_group_val + $(this).val());
 							});
 
-							$('#ringback', popup_html).change(function(e) {
+							$('#ringback', popup_html).on('change', function(e) {
 								var val = $(this).val(),
 									isShoutcast = val === 'shoutcast_url';
 
@@ -1257,7 +1257,7 @@ define(function(require) {
 								}
 							});
 
-							$('.media_action', popup_html).click(function(e) {
+							$('.media_action', popup_html).on('click', function(e) {
 								var isCreation = $(this).data('action') === 'create',
 									mediaData = isCreation ? {} : { id: $('#ringback', popup_html).val() };
 
@@ -1276,7 +1276,7 @@ define(function(require) {
 								});
 							});
 
-							$('ul.settings1 > li > a', popup_html).click(function(item) {
+							$('ul.settings1 > li > a', popup_html).on('click', function(item) {
 								$('.pane_content', popup_html).hide();
 
 								//Reset Search field
@@ -1298,12 +1298,12 @@ define(function(require) {
 								$(this).parent().addClass('current');
 							});
 
-							$('.searchsubmit2', popup_html).click(function() {
+							$('.searchsubmit2', popup_html).on('click', function() {
 								$('.searchfield', popup_html).val('');
 								$('.column li', popup_html).show();
 							});
 
-							$('#devices_pane .searchfield', popup_html).keyup(function() {
+							$('#devices_pane .searchfield', popup_html).on('keyup', function() {
 								$('#devices_pane .column.left li').each(function() {
 									if ($('.item_name', $(this)).html().toLowerCase().indexOf($('#devices_pane .searchfield', popup_html).val().toLowerCase()) === -1) {
 										$(this).hide();
@@ -1313,7 +1313,7 @@ define(function(require) {
 								});
 							});
 
-							$('#users_pane .searchfield', popup_html).keyup(function() {
+							$('#users_pane .searchfield', popup_html).on('keyup', function() {
 								$('#users_pane .column.left li').each(function() {
 									if ($('.item_name', $(this)).html().toLowerCase().indexOf($('#users_pane .searchfield', popup_html).val().toLowerCase()) === -1) {
 										$(this).hide();
@@ -1323,7 +1323,7 @@ define(function(require) {
 								});
 							});
 
-							$('#groups_pane .searchfield', popup_html).keyup(function() {
+							$('#groups_pane .searchfield', popup_html).on('keyup', function() {
 								$('#groups_pane .column.left li').each(function() {
 									if ($('.item_name', $(this)).html().toLowerCase().indexOf($('#groups_pane .searchfield', popup_html).val().toLowerCase()) === -1) {
 										$(this).hide();
@@ -1364,7 +1364,7 @@ define(function(require) {
 								}
 							});
 
-							$('#save_ring_group', popup_html).click(function() {
+							$('#save_ring_group', popup_html).on('click', function() {
 								var name = $('#name', popup_html).val(),
 									global_timeout = 0,
 									strategy = $('#strategy', popup_html).val(),
