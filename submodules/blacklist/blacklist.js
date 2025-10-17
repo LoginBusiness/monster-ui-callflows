@@ -180,7 +180,7 @@ define(function(require) {
 					}
 				};
 
-			$('.number-wrapper.placeholder:not(.active)', template).click(function() {
+			$('.number-wrapper.placeholder:not(.active)', template).on('click', function() {
 				var $this = $(this);
 
 				$this.addClass('active');
@@ -188,7 +188,7 @@ define(function(require) {
 				$('#number_value', template).focus();
 			});
 
-			$('#add_number', template).click(function(e) {
+			$('#add_number', template).on('click', function(e) {
 				e.preventDefault();
 				addNumber();
 			});
@@ -205,14 +205,14 @@ define(function(require) {
 				$(this).parents('.number-wrapper').remove();
 			});
 
-			$('#cancel_number', template).click(function(e) {
+			$('#cancel_number', template).on('click', function(e) {
 				e.stopPropagation();
 
 				$('.number-wrapper.placeholder.active', template).removeClass('active');
 				$('#number_value', template).val('');
 			});
 
-			$('.blacklist-save', template).click(function() {
+			$('.blacklist-save', template).on('click', function() {
 				var formData = monster.ui.getFormData('blacklist-form'),
 					cleanData = self.blacklistCleanFormData(formData),
 					mapNumbers = {};
@@ -231,7 +231,7 @@ define(function(require) {
 				self.blacklistSave(cleanData, callbacks.save_success);
 			});
 
-			$('.blacklist-delete', template).click(function() {
+			$('.blacklist-delete', template).on('click', function() {
 				monster.ui.confirm(self.i18n.active().callflows.blacklist.are_you_sure_you_want_to_delete, function() {
 					self.blacklistDelete(data.id, callbacks.delete_success);
 				});

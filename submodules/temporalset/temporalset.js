@@ -194,7 +194,7 @@ define(function(require) {
 
 			self.winkstartTabs(temporalset_html);
 
-			$('.temporalset-save', temporalset_html).click(function(ev) {
+			$('.temporalset-save', temporalset_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				var $this = $(this);
@@ -216,7 +216,7 @@ define(function(require) {
 				}
 			});
 
-			$('.temporalset-delete', temporalset_html).click(function(ev) {
+			$('.temporalset-delete', temporalset_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				monster.ui.confirm(self.i18n.active().callflows.temporalset.are_you_sure_you_want_to_delete, function() {
