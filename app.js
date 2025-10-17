@@ -763,7 +763,7 @@ define(function(require) {
 			var self = this;
 
 			// Adjusting the layout divs height to always fit the window's size
-			$(window).resize(function(e) {
+			$(window).on('resize', function(e) {
 				var $listContainer = container.find('.list-container'),
 					$mainContent = container.find('.callflow-content'),
 					$tools = container.find('.tools'),
@@ -777,7 +777,7 @@ define(function(require) {
 				$tools.css('height', innerContentHeightPx);
 				$flowChart.css('height', innerContentHeightPx);
 			});
-			$(window).resize();
+			$(window).trigger('resize');
 		},
 
 		repaintList: function(args) {
