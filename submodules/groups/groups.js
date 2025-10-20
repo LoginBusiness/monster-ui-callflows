@@ -144,7 +144,7 @@ define(function(require) {
 				//re-add it to the dropdown
 				$('#option_endpoint_' + endpoint_id, groups_html).show();
 				//if grid empty, add no data line
-				if ($('.rows .row', groups_html).size() === 0) {
+				if ($('.rows .row', groups_html).length === 0) {
 					$('.rows', groups_html)
 						.append($(self.getTemplate({
 							name: 'endpoint_row',
@@ -1034,7 +1034,7 @@ define(function(require) {
 						var remove_element = function(li) {
 							var $parent_li = li;
 							var data = $parent_li.data();
-							data.name = jQuery.trim($('.item_name', $parent_li).html());
+							data.name = ($('.item_name', $parent_li).html() || '').trim();
 							$('#' + data.endpoint_type + 's_pane .connect.left', popup_html)
 								.append($(self.getTemplate({
 									name: 'page_group_element',
@@ -1043,7 +1043,7 @@ define(function(require) {
 								})));
 							$parent_li.remove();
 
-							if ($('.connect.right li', popup_html).size() === 0) {
+							if ($('.connect.right li', popup_html).length === 0) {
 								$('.column.right .connect', popup).addClass('no_element');
 							}
 
@@ -1509,7 +1509,7 @@ define(function(require) {
 							var remove_element = function(li) {
 								var $parent_li = li;
 								var data = $parent_li.data();
-								data.name = jQuery.trim($('.item_name', $parent_li).html());
+								data.name = ($('.item_name', $parent_li).html() || '').trim();
 								$('#' + data.endpoint_type + 's_pane .connect.left', popup_html)
 									.append($(self.getTemplate({
 										name: 'ring_group_element',
@@ -1518,7 +1518,7 @@ define(function(require) {
 									})));
 								$parent_li.remove();
 
-								if ($('.connect.right li', popup_html).size() === 0) {
+								if ($('.connect.right li', popup_html).length === 0) {
 									$('.column.right .connect', popup).addClass('no_element');
 								}
 

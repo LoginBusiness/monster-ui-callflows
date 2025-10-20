@@ -438,11 +438,11 @@ define(function(require) {
 
 		conferenceFormatData: function(data) {
 			if (typeof data.member === 'object') {
-				if ($.isArray(data.member.pins)) {
+				if (Array.isArray(data.member.pins)) {
 					data.member.pins_string = data.member.pins.join(', ');
 				}
 
-				if ($.isArray(data.conference_numbers)) {
+				if (Array.isArray(data.conference_numbers)) {
 					data.conference_numbers_string = data.conference_numbers.join(', ');
 				}
 			}
@@ -455,7 +455,7 @@ define(function(require) {
 			form_data.member.pins_string = self.conferenceLettersToNumbers(form_data.member.pins_string);
 
 			form_data.member.pins = $.map(form_data.member.pins_string.split(','), function(val) {
-				var pin = $.trim(val);
+				var pin = (val || '').trim();
 
 				if (pin !== '') {
 					return pin;
@@ -465,7 +465,7 @@ define(function(require) {
 			});
 
 			form_data.conference_numbers = $.map(form_data.conference_numbers_string.split(','), function(val) {
-				var number = $.trim(val);
+				var number = (val || '').trim();
 
 				if (number !== '') {
 					return number;

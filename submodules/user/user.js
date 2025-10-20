@@ -1061,7 +1061,7 @@ define(function(require) {
 		userNormalizeData: function(data) {
 			var self = this;
 
-			if ($.isArray(data.directories)) {
+			if (Array.isArray(data.directories)) {
 				data.directories = {};
 			}
 

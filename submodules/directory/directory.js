@@ -101,7 +101,7 @@ define(function(require) {
 							}
 						};
 
-					if ($('#row_no_data', directory_html).size() > 0) {
+					if ($('#row_no_data', directory_html).length > 0) {
 						$('#row_no_data', directory_html).remove();
 					}
 
@@ -127,7 +127,7 @@ define(function(require) {
 				//re-add it to the dropdown
 				$('#option_user_' + user_id, directory_html).show();
 				//if grid empty, add no data line
-				if ($('.rows .row', directory_html).size() === 0) {
+				if ($('.rows .row', directory_html).length === 0) {
 					$('.rows', directory_html)
 						.append($(self.getTemplate({
 							name: 'userRow',
@@ -382,7 +382,7 @@ define(function(require) {
 				},
 				success: function(_data, status) {
 					if (callflow_id) {
-						if (!_data.data.directories || $.isArray(_data.data.directories)) {
+						if (!_data.data.directories || Array.isArray(_data.data.directories)) {
 							_data.data.directories = {};
 						}
 						_data.data.directories[directory_id] = callflow_id;
