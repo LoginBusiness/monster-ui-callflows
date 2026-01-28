@@ -61,7 +61,7 @@ define(function(require) {
 								$('#edit_link', popup_html).hide();
 							}
 
-							$('.inline_action', popup_html).click(function(ev) {
+							$('.inline_action', popup_html).on('click', function(ev) {
 								var _data = ($(this).data('action') === 'edit') ? { id: $('#faxbox_selector', popup_html).val() } : {};
 
 								ev.preventDefault();
@@ -78,7 +78,7 @@ define(function(require) {
 								});
 							});
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								node.setMetadata('id', $('#faxbox_selector', popup_html).val());
 
 								node.caption = $('#faxbox_selector option:selected', popup_html).text();
@@ -294,7 +294,7 @@ define(function(require) {
 			self.winkstartTabs(faxbox_html);
 
 			if (!data.faxbox.hasOwnProperty('id')) {
-				$('#owner_id', faxbox_html).change(function(ev) {
+				$('#owner_id', faxbox_html).on('change', function(ev) {
 					if ($(this).val()) {
 						self.faxboxGetUser($(this).val(), function(_data, status) {
 							data.faxbox = self.faxboxGetDefaultSettings(_data);
@@ -308,7 +308,7 @@ define(function(require) {
 					}
 				});
 			} else {
-				$('#owner_id', faxbox_html).change(function(ev) {
+				$('#owner_id', faxbox_html).on('change', function(ev) {
 					var currentFaxbox = monster.ui.getFormData('faxbox_form');
 
 					if ($(this).val()) {
@@ -348,7 +348,7 @@ define(function(require) {
 				$('#edit_link', faxbox_html).hide();
 			}
 
-			$('.inline-action', faxbox_html).click(function(ev) {
+			$('.inline-action', faxbox_html).on('click', function(ev) {
 				var _data = $(this).data('action') === 'edit' ? { id: $('#owner_id', faxbox_html).val() } : {},
 					_id = _data.id;
 
@@ -372,7 +372,7 @@ define(function(require) {
 				});
 			});
 
-			$('#caller_id', faxbox_html).change(function(ev) {
+			$('#caller_id', faxbox_html).on('change', function(ev) {
 				var number = $(this).val(),
 					fax_identity = $('#fax_identity', faxbox_html);
 
@@ -389,7 +389,7 @@ define(function(require) {
 				}
 			});
 
-			$('.faxbox-save', faxbox_html).click(function(ev) {
+			$('.faxbox-save', faxbox_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				var form_html = $('#faxbox_form', faxbox_html),
@@ -442,7 +442,7 @@ define(function(require) {
 				}
 			});
 
-			$('.faxbox-delete', faxbox_html).click(function(ev) {
+			$('.faxbox-delete', faxbox_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				monster.ui.confirm(self.i18n.active().callflows.faxbox.are_you_sure_you_want_to_delete, function() {

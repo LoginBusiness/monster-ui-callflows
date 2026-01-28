@@ -54,7 +54,7 @@ define(function(require) {
 								})),
 								popup;
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								node.setMetadata('id', $('#queue_selector', popup_html).val());
 
 								node.caption = $('#queue_selector option:selected', popup_html).text();

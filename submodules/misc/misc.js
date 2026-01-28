@@ -129,7 +129,7 @@ define(function(require) {
 									submodule: 'misc'
 								}));
 
-								$('#add', popup_html).click(function() {
+								$('#add', popup_html).on('click', function() {
 									node.setMetadata('id', $('#object-selector', popup_html).val());
 
 									node.caption = $('#object-selector option:selected', popup_html).text();
@@ -360,7 +360,7 @@ define(function(require) {
 							submodule: 'misc'
 						}));
 
-						$('#add', popup_html).click(function() {
+						$('#add', popup_html).on('click', function() {
 							var cid_name_val = $('#cid_name_prefix', popup_html).val(),
 								cid_number_val = $('#cid_number_prefix', popup_html).val(),
 								apply_to_val = $('#apply_to', popup_html).val();
@@ -448,7 +448,7 @@ define(function(require) {
 							})),
 							popup;
 
-						$('#add', popup_html).click(function() {
+						$('#add', popup_html).on('click', function() {
 							var alert_info_val = $('#alert_info', popup_html).val();
 
 							node.setMetadata('alert_info', alert_info_val);
@@ -500,7 +500,7 @@ define(function(require) {
 							})),
 							popup;
 
-						$('#add', popup_html).click(function() {
+						$('#add', popup_html).on('click', function() {
 							var presence_id = $('#presence_id_input', popup_html).val();
 							node.setMetadata('presence_id', presence_id);
 							node.setMetadata('status', $('#presence_status option:selected', popup_html).val());
@@ -552,7 +552,7 @@ define(function(require) {
 							submodule: 'misc'
 						}));
 
-						$('#add', popup_html).click(function() {
+						$('#add', popup_html).on('click', function() {
 							var language = $('#language_id_input', popup_html).val();
 							node.setMetadata('language', language);
 							node.caption = language;
@@ -604,7 +604,7 @@ define(function(require) {
 								submodule: 'misc'
 							}));
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								var selector = $('#endpoint_selector', popup_html),
 									id = selector.val(),
 									name = selector.find('#' + id).html(),
@@ -674,7 +674,7 @@ define(function(require) {
 								$('#edit_link', popup_html).hide();
 							}
 
-							$('.inline_action', popup_html).click(function(ev) {
+							$('.inline_action', popup_html).on('click', function(ev) {
 								var _data = ($(this).data('action') === 'edit') ? { id: $('#user_selector', popup_html).val() } : {};
 
 								ev.preventDefault();
@@ -689,7 +689,7 @@ define(function(require) {
 								});
 							});
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								node.setMetadata('owner_id', $('#user_selector', popup_html).val());
 								node.setMetadata('media', {
 									fax_option: $('#t_38_checkbox', popup_html).is(':checked')
@@ -743,7 +743,7 @@ define(function(require) {
 							})),
 							popup;
 
-						$('#add', popup_html).click(function() {
+						$('#add', popup_html).on('click', function() {
 							node.setMetadata('url', $('#url', popup_html).val());
 							node.setMetadata('format', $('#format', popup_html).val());
 							node.setMetadata('time_limit', $('#time_limit', popup_html).val());
@@ -824,7 +824,7 @@ define(function(require) {
 							submodule: 'misc'
 						}));
 
-						$('#add', popup_html).click(function() {
+						$('#add', popup_html).on('click', function() {
 							node.setMetadata('voice_url', $('#pivot_voiceurl_input', popup_html).val());
 							node.setMetadata('method', $('#pivot_method_input', popup_html).val());
 							node.setMetadata('req_format', $('#pivot_format_input', popup_html).val());
@@ -884,7 +884,7 @@ define(function(require) {
 
 						monster.ui.tooltips(popup_html);
 
-						$('#add', popup_html).click(function() {
+						$('#add', popup_html).on('click', function() {
 							var save_disa = function() {
 								var setData = function(field, value) {
 									if (value !== 'default') {
@@ -962,7 +962,7 @@ define(function(require) {
 
 						monster.ui.tooltips(popup_html);
 
-						$('#add', popup_html).click(function() {
+						$('#add', popup_html).on('click', function() {
 							var setData = function(field, value) {
 								if (value !== 'default' && value !== '') {
 									node.setMetadata(field, value);
@@ -1026,7 +1026,7 @@ define(function(require) {
 
 						monster.ui.tooltips(popup_html);
 
-						$('#add', popup_html).click(function() {
+						$('#add', popup_html).on('click', function() {
 							var setData = function(field, value) {
 								if (value !== 'default') {
 									node.setMetadata(field, value);
@@ -1087,7 +1087,7 @@ define(function(require) {
 
 						monster.ui.tooltips(popup_html);
 
-						$('#add', popup_html).click(function() {
+						$('#add', popup_html).on('click', function() {
 							var setData = function(field, value) {
 								if (value !== 'default') {
 									node.setMetadata(field, value);
@@ -1158,7 +1158,7 @@ define(function(require) {
 								$('#edit_link', popup_html).hide();
 							}
 
-							$('#media_selector', popup_html).change(function() {
+							$('#media_selector', popup_html).on('change', function() {
 								if ($('#media_selector option:selected', popup_html).val() === undefined
 								|| $('#media_selector option:selected', popup_html).val() === 'null') {
 									$('#edit_link', popup_html).hide();
@@ -1167,7 +1167,7 @@ define(function(require) {
 								}
 							});
 
-							$('.inline_action', popup_html).click(function(ev) {
+							$('.inline_action', popup_html).on('click', function(ev) {
 								var _data = ($(this).data('action') === 'edit') ? { id: $('#media_selector', popup_html).val() } : {};
 
 								ev.preventDefault();
@@ -1182,7 +1182,7 @@ define(function(require) {
 								});
 							});
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								if ($('#response_code_input', popup_html).val().match(/^[1-6][0-9]{2}$/)) {
 									node.setMetadata('code', $('#response_code_input', popup_html).val());
 									node.setMetadata('message', $('#response_message_input', popup_html).val());

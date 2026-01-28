@@ -60,7 +60,7 @@ define(function(require) {
 								$('#edit_link', popup_html).hide();
 							}
 
-							$('.inline_action', popup_html).click(function(ev) {
+							$('.inline_action', popup_html).on('click', function(ev) {
 								var _data = ($(this).data('action') === 'edit') ? { id: $('#conference_selector', popup_html).val() } : {};
 
 								ev.preventDefault();
@@ -74,7 +74,7 @@ define(function(require) {
 								});
 							});
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								node.setMetadata('id', $('#conference_selector', popup_html).val());
 
 								node.caption = $('#conference_selector option:selected', popup_html).text();
@@ -297,11 +297,11 @@ define(function(require) {
 				$('#edit_link', conference_html).hide();
 			}
 
-			$('#owner_id', conference_html).change(function() {
+			$('#owner_id', conference_html).on('change', function() {
 				!$('#owner_id option:selected', conference_html).val() ? $('#edit_link', conference_html).hide() : $('#edit_link', conference_html).show();
 			});
 
-			$('.inline_action', conference_html).click(function(ev) {
+			$('.inline_action', conference_html).on('click', function(ev) {
 				var _data = ($(this).data('action') === 'edit') ? { id: $('#owner_id', conference_html).val() } : {},
 					_id = _data.id;
 
@@ -329,7 +329,7 @@ define(function(require) {
 				});
 			});
 
-			$('.conference-save', conference_html).click(function(ev) {
+			$('.conference-save', conference_html).on('click', function(ev) {
 				ev.preventDefault();
 				var $this = $(this);
 
@@ -357,7 +357,7 @@ define(function(require) {
 				}
 			});
 
-			$('.conference-delete', conference_html).click(function(ev) {
+			$('.conference-delete', conference_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				monster.ui.confirm(self.i18n.active().callflows.conference.are_you_sure_you_want_to_delete, function() {
@@ -438,11 +438,11 @@ define(function(require) {
 
 		conferenceFormatData: function(data) {
 			if (typeof data.member === 'object') {
-				if ($.isArray(data.member.pins)) {
+				if (Array.isArray(data.member.pins)) {
 					data.member.pins_string = data.member.pins.join(', ');
 				}
 
-				if ($.isArray(data.conference_numbers)) {
+				if (Array.isArray(data.conference_numbers)) {
 					data.conference_numbers_string = data.conference_numbers.join(', ');
 				}
 			}
@@ -455,7 +455,7 @@ define(function(require) {
 			form_data.member.pins_string = self.conferenceLettersToNumbers(form_data.member.pins_string);
 
 			form_data.member.pins = $.map(form_data.member.pins_string.split(','), function(val) {
-				var pin = $.trim(val);
+				var pin = (val || '').trim();
 
 				if (pin !== '') {
 					return pin;
@@ -465,7 +465,7 @@ define(function(require) {
 			});
 
 			form_data.conference_numbers = $.map(form_data.conference_numbers_string.split(','), function(val) {
-				var number = $.trim(val);
+				var number = (val || '').trim();
 
 				if (number !== '') {
 					return number;

@@ -110,7 +110,7 @@ define(function(require) {
 			});
 
 			template.find('.featurecode_enabled').on('change', function() {
-			//$('.featurecode_enabled', template).change(function() {
+			//$('.featurecode_enabled', template).on('change', function() {
 				var $this = $(this),
 					action_wrapper = $this.parents('.action_wrapper'),
 					number_field = action_wrapper.find('.featurecode-number');

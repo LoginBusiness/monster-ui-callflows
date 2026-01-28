@@ -542,7 +542,7 @@ define(function(require) {
 					}
 				});
 
-			template.find('.account-settings-tabs a').click(function(e) {
+			template.find('.account-settings-tabs a').on('click', function(e) {
 				e.preventDefault();
 
 				$(this).tab('show');
@@ -763,7 +763,7 @@ define(function(require) {
 			var self = this;
 
 			// Adjusting the layout divs height to always fit the window's size
-			$(window).resize(function(e) {
+			$(window).on('resize', function(e) {
 				var $listContainer = container.find('.list-container'),
 					$mainContent = container.find('.callflow-content'),
 					$tools = container.find('.tools'),
@@ -777,7 +777,7 @@ define(function(require) {
 				$tools.css('height', innerContentHeightPx);
 				$flowChart.css('height', innerContentHeightPx);
 			});
-			$(window).resize();
+			$(window).trigger('resize');
 		},
 
 		repaintList: function(args) {
@@ -961,7 +961,7 @@ define(function(require) {
 
 			$('.buttons').empty();
 
-			$('.save', buttons).click(function() {
+			$('.save', buttons).on('click', function() {
 				if (self.flow.numbers && self.flow.numbers.length > 0) {
 					self.save();
 				} else {
@@ -969,7 +969,7 @@ define(function(require) {
 				}
 			});
 
-			$('.delete', buttons).click(function() {
+			$('.delete', buttons).on('click', function() {
 				if (self.flow.id) {
 					monster.ui.confirm(self.i18n.active().oldCallflows.are_you_sure, function() {
 						self.callApi({
@@ -1402,13 +1402,13 @@ define(function(require) {
 
 			self.formatFlow();
 
-			var layout = self.renderBranch(self.flow.root);
+		var layout = self.renderBranch(self.flow.root);
 
-			$('.node', layout).hover(function() {
-				$(this).addClass('over');
-			}, function() {
-				$(this).removeClass('over');
-			});
+		$('.node', layout).on('mouseenter', function() {
+			$(this).addClass('over');
+		}).on('mouseleave', function() {
+			$(this).removeClass('over');
+		});
 
 			$('.node', layout).each(function() {
 				var node = self.flow.nodes[$(this).attr('id')],
@@ -1424,7 +1424,7 @@ define(function(require) {
 						}
 					}));
 
-					$('.edit_icon', node_html).click(function() {
+					$('.edit_icon', node_html).on('click', function() {
 						self.flow = $.extend(true, { contact_list: { exclude: false } }, self.flow);
 
 						var dialogTemplate = $(self.getTemplate({
@@ -1439,7 +1439,7 @@ define(function(require) {
 								title: self.i18n.active().oldCallflows.popup_title
 							});
 
-						$('#add', popup).click(function() {
+						$('#add', popup).on('click', function() {
 							var $callflow_name = $('#callflow_name', popup);
 							if ($callflow_name.val() !== '') {
 								self.flow.name = $callflow_name.val();
@@ -1478,7 +1478,7 @@ define(function(require) {
 							.append(row);
 					}
 
-					$('.number_column.empty', node_html).click(function() {
+					$('.number_column.empty', node_html).on('click', function() {
 						self.listNumbers(function(phoneNumbers) {
 							var parsedNumbers = [];
 
@@ -1527,7 +1527,7 @@ define(function(require) {
 
 							$('.extensions_content', popup).hide();
 
-							$('input[name="number_type"]', popup).click(function() {
+							$('input[name="number_type"]', popup).on('click', function() {
 								if ($(this).val() === 'your_numbers') {
 									$('.list_numbers_content', popup).show();
 									$('.extensions_content', popup).hide();
@@ -1564,7 +1564,7 @@ define(function(require) {
 								});
 							});
 
-							$('.add_number', popup).click(function(event) {
+							$('.add_number', popup).on('click', function(event) {
 								event.preventDefault();
 								var number = $('input[name="number_type"]:checked', popup).val() === 'your_numbers' ? $('#list_numbers option:selected', popup).val() : $('#add_number_text', popup).val();
 
@@ -1580,7 +1580,7 @@ define(function(require) {
 						});
 					});
 
-					$('.number_column .delete', node_html).click(function() {
+					$('.number_column .delete', node_html).on('click', function() {
 						var number = $(this).parent('.number_column').data('number') + '',
 							index = $.inArray(number, self.flow.numbers);
 
@@ -1642,7 +1642,7 @@ define(function(require) {
 				}
 
 				//make names of callflow nodes clickable
-				$('.details a', node_html).click(function(event) {
+				$('.details a', node_html).on('click', function(event) {
 					event.stopPropagation();
 					var previewCallflowId = self.flow.nodes[$(node_html).find('.delete').attr('id')].data.data.id,
 						dialogTemplate = $(self.getTemplate({
@@ -1659,7 +1659,7 @@ define(function(require) {
 							width: '650px'
 						});
 						popup.find('.callflow-preview-section.callflow').append(callflowPreview);
-						$('#callflow_jump').click(function() {
+						$('#callflow_jump').on('click', function() {
 							self.editCallflow({ id: previewCallflowId });
 							popup.dialog('close').remove();
 						});
@@ -1746,7 +1746,7 @@ define(function(require) {
 				}
 			});
 
-			$('.node-options .delete', layout).click(function() {
+			$('.node-options .delete', layout).on('click', function() {
 				var node = self.flow.nodes[$(this).attr('id')];
 
 				if (node.parent) {
@@ -1771,7 +1771,7 @@ define(function(require) {
 				children;
 
 			if (branch.parent && ('key_edit' in self.actions[branch.parent.actionName])) {
-				$('.div_option', flow).click(function() {
+				$('.div_option', flow).on('click', function() {
 					self.actions[branch.parent.actionName].key_edit(branch, function() {
 						self.repaintFlow();
 					});
@@ -1842,7 +1842,7 @@ define(function(require) {
 			// Set the basic drawer to open
 			$('#Basic', tools).removeClass('inactive').addClass('active');
 
-			$('.category .open', tools).click(function() {
+			$('.category .open', tools).on('click', function() {
 				tools
 					.find('.category')
 					.removeClass('active')
@@ -1887,21 +1887,18 @@ define(function(require) {
 					_.each(categories, function(category) {
 						tools.find('.category[name="' + category + '"]').addClass('active').removeClass('inactive');
 					});
-				}, 200)($(this));
-			});
+			}, 200)($(this));
+		});
 
-			$('.tool', tools).hover(
-				function() {
-					var $this = $(this);
-					if ($this.attr('help')) {
-						tools.find('.callflow_helpbox_wrapper #help_box').html($this.attr('help'));
-						tools.find('.callflow_helpbox_wrapper').css('top', $this.offset().top).css('left', $('#ws_cf_tools').offset().left - 162).show();
-					}
-				},
-				function() {
-					tools.find('.callflow_helpbox_wrapper').hide();
-				}
-			);
+		$('.tool', tools).on('mouseenter', function() {
+			var $this = $(this);
+			if ($this.attr('help')) {
+				tools.find('.callflow_helpbox_wrapper #help_box').html($this.attr('help'));
+				tools.find('.callflow_helpbox_wrapper').css('top', $this.offset().top).css('left', $('#ws_cf_tools').offset().left - 162).show();
+			}
+		}).on('mouseleave', function() {
+			tools.find('.callflow_helpbox_wrapper').hide();
+		});
 
 			function action(el) {
 				el.draggable({
@@ -2053,7 +2050,7 @@ define(function(require) {
 				}
 			});
 
-			buttons.find('.advanced').click(function() {
+			buttons.find('.advanced').on('click', function() {
 				var $this = $(this);
 
 				if (!$this.hasClass('activate')) {
@@ -2077,16 +2074,16 @@ define(function(require) {
 			});
 		},
 
-		winkstartLinkForm: function(html) {
-			$('input', html).bind('change.link keyup.link focus.link', function() {
-				var input = $(this),
-					name = input.attr('name'),
-					type = input.attr('type'),
-					value = input.val(),
-					id = input.attr('id'),
+	winkstartLinkForm: function(html) {
+		$('input', html).on('change.link keyup.link focus.link', function() {
+			var input = $(this),
+				name = input.attr('name'),
+				type = input.attr('type'),
+				value = input.val(),
+				id = input.attr('id'),
 					input_fields = $('input[name="' + name + '"]', html);
 
-				if (input_fields.size() > 1) {
+				if (input_fields.length > 1) {
 					if (type === 'checkbox') {
 						input_fields = input_fields.filter('[value=' + value + ']');
 						(input.attr('checked')) ? input_fields.attr('checked', 'checked') : input_fields.removeAttr('checked');

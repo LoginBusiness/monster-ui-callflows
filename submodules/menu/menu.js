@@ -172,11 +172,11 @@ define(function(require) {
 				$('#edit_link_media', menu_html).hide();
 			}
 
-			$('#media_greeting', menu_html).change(function() {
+			$('#media_greeting', menu_html).on('change', function() {
 				!$('#media_greeting option:selected', menu_html).val() ? $('#edit_link_media', menu_html).hide() : $('#edit_link_media', menu_html).show();
 			});
 
-			$('.inline_action_media', menu_html).click(function(ev) {
+			$('.inline_action_media', menu_html).on('click', function(ev) {
 				var _data = ($(this).data('action') === 'edit') ? { id: $('#media_greeting', menu_html).val() } : {},
 					_id = _data.id;
 
@@ -207,7 +207,7 @@ define(function(require) {
 				});
 			});
 
-			$('.menu-save', menu_html).click(function(ev) {
+			$('.menu-save', menu_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				var $this = $(this);
@@ -234,7 +234,7 @@ define(function(require) {
 				}
 			});
 
-			$('.menu-delete', menu_html).click(function(ev) {
+			$('.menu-delete', menu_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				monster.ui.confirm(self.i18n.active().callflows.menu.are_you_sure_you_want_to_delete, function() {
@@ -435,7 +435,7 @@ define(function(require) {
 								$('#edit_link', popup_html).hide();
 							}
 
-							$('.inline_action', popup_html).click(function(ev) {
+							$('.inline_action', popup_html).on('click', function(ev) {
 								var _data = ($(this).data('action') === 'edit') ? { id: $('#menu_selector', popup_html).val() } : {};
 
 								ev.preventDefault();

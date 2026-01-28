@@ -70,7 +70,7 @@ define(function(require) {
 							submodule: 'resource'
 						}));
 
-						$('#add', popup_html).click(function() {
+						$('#add', popup_html).on('click', function() {
 							var hunt_id = $('#hunt_account_id', popup_html).val();
 
 							if (hunt_id) {

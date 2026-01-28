@@ -39,7 +39,7 @@ define(function(require) {
 
 			self.winkstartTabs(directory_html);
 
-			$('.directory-save', directory_html).click(function(ev) {
+			$('.directory-save', directory_html).on('click', function(ev) {
 				ev.preventDefault();
 				var $this = $(this);
 
@@ -75,7 +75,7 @@ define(function(require) {
 				}
 			});
 
-			$('.directory-delete', directory_html).click(function(ev) {
+			$('.directory-delete', directory_html).on('click', function(ev) {
 				ev.preventDefault();
 
 				monster.ui.confirm(self.i18n.active().callflows.directory.are_you_sure_you_want_to_delete, function() {
@@ -83,7 +83,7 @@ define(function(require) {
 				});
 			});
 
-			$('.add_user_div', directory_html).click(function() {
+			$('.add_user_div', directory_html).on('click', function() {
 				var $user = $('#select_user_id', directory_html);
 				var $callflow = $('#callflow_id', directory_html);
 
@@ -101,7 +101,7 @@ define(function(require) {
 							}
 						};
 
-					if ($('#row_no_data', directory_html).size() > 0) {
+					if ($('#row_no_data', directory_html).length > 0) {
 						$('#row_no_data', directory_html).remove();
 					}
 
@@ -120,14 +120,14 @@ define(function(require) {
 				}
 			});
 
-			$(directory_html).delegate('.action_user.delete', 'click', function() {
+			$(directory_html).on('click', '.action_user.delete', function() {
 				var user_id = $(this).data('id');
 				//removes it from the grid
 				$('#row_user_' + user_id, directory_html).remove();
 				//re-add it to the dropdown
 				$('#option_user_' + user_id, directory_html).show();
 				//if grid empty, add no data line
-				if ($('.rows .row', directory_html).size() === 0) {
+				if ($('.rows .row', directory_html).length === 0) {
 					$('.rows', directory_html)
 						.append($(self.getTemplate({
 							name: 'userRow',
@@ -382,7 +382,7 @@ define(function(require) {
 				},
 				success: function(_data, status) {
 					if (callflow_id) {
-						if (!_data.data.directories || $.isArray(_data.data.directories)) {
+						if (!_data.data.directories || Array.isArray(_data.data.directories)) {
 							_data.data.directories = {};
 						}
 						_data.data.directories[directory_id] = callflow_id;
@@ -503,7 +503,7 @@ define(function(require) {
 								$('#edit_link', popup_html).hide();
 							}
 
-							$('.inline_action', popup_html).click(function(ev) {
+							$('.inline_action', popup_html).on('click', function(ev) {
 								var _data = ($(this).data('action') === 'edit') ? { id: $('#directory_selector', popup_html).val() } : {};
 
 								ev.preventDefault();
@@ -520,7 +520,7 @@ define(function(require) {
 								});
 							});
 
-							$('#add', popup_html).click(function() {
+							$('#add', popup_html).on('click', function() {
 								node.setMetadata('id', $('#directory_selector', popup).val());
 
 								node.caption = $('#directory_selector option:selected', popup).text();
